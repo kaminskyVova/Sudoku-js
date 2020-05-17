@@ -12,8 +12,6 @@
 .sudoku-game {
   display: flex;
   flex-wrap: wrap;
-
-
 }
 
 .sudoku-segment {
