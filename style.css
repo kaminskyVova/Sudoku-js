@@ -1,17 +1,137 @@
 
+body {
+  font-family: 'Rubik One', sans-serif;
+  height: 430px;
+  overflow: hidden;
+}
+
+
+h1 {
+  width: 250px;
+  margin: auto;
+  margin-bottom: 30px;
+  font-size: 64px;
+  /*color: coral;
+  */text-align: center;
+  padding: 10px;
+  /*font-size: 2em;
+  */background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  /*display: inline-block;
+  *//*padding: 0.3em 0.6em ;
+  */border: 3px solid transparent;
+  border-image: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+  border-image-slice: 1;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  -ms-border-radius: 30px;
+  -o-border-radius: 30px;
+}
 .wrapper {
-  width:500px;
-  margin: auto; 
+  width:600px;
+  /* margin: auto;  */
+display: flex;
+}
+
+.form-wrapper {
+  /* width: 550px; */
+  margin-right: 128px;
 }
 
 .form__inputs {
+  margin-bottom: 20px;
+}
 
+
+
+.enter {
+  display: block;
+  background-color: rgb(255, 0, 34);
+  color: #fff;
+  font-size: 18px;
+  border:1px solid blue;
+}
+
+.enter:hover,
+.enter:hover {
+  border:1px solid red;
+  color: yellow;
+}
+
+
+#name,
+#login {
+  width: 300px;
+  height: 30px;
+  border: 1px solid blue;
+  outline: none;
+  padding-left: 10px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  margin-bottom: 10px;
+
+}
+
+button {
+  cursor: pointer;
+  width: 90px;
+  height: 40px;
+  color: #fff;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  outline: none;
+  margin-bottom: 10px;
+}
+
+.level_1 {
+  background-color: rgb(9, 212, 9);
+  border-color: cornflowerblue;
+}
+.level_1:hover,
+.level_1:active {
+  background-color: chartreuse;
+}
+
+.level_2 {
+  background-color: rgb(224, 224, 5);
+  border-color: cornflowerblue;
+}
+.level_2:hover,
+.level_2:active {
+  background-color: yellow;
+}
+
+.level_3 {
+  background-color: rgb(215, 8, 98);
+  border-color: cornflowerblue;
+}
+.level_3:hover,
+.level_3:active {
+  background-color: rgb(250, 0, 0);
+}
+
+.btn {
+  background-color: dodgerblue;
+  width: 100px;
+}
+.btn:hover,
+.btn:active {
+  background-color: royalblue;
 }
 
 
 .sudoku-game {
   display: flex;
   flex-wrap: wrap;
+  margin-right: 10px;
+  margin-bottom: 1000px;
 }
 
 .sudoku-segment {
@@ -50,6 +170,7 @@
 
 .sudoku-cell.important-cell {
   color: blue;
+  font-size: 22px;
 }
 
 .sudoku-cell.start-cell.error {

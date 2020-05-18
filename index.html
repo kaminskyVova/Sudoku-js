@@ -2,137 +2,37 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Sudoku Game</title>
-    <link rel="stylesheet" href="style.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Sudoku Game</title>
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <div class="wrapper">
-        <h1>Sudoku</h1>
-        <div class="entrance_and_choice-lvl form-wrapper">
-            <div class="form__inputs">
-                <input type="text" id="name" placeholder="Enter Name">
-                <input type="password" id="login" placeholder="Enter Login">
-            </div>
-            <div class="form__btns">
-                <button class="1">Level-1</button>
-                <button class="2">Level-2</button>
-                <button class="3">Level-3</button>
-                <!-- <button>Start</button> -->
-            </div>
-            <div class="finish_and_restart">
-                <button class="Finish">Finish</button>
-                <button class="Restart">Restart</button>
-            </div>
-        </div>
-        <div id="app">
-            <!-- <div class="sudoku-game" style="width: 300px; height: 300px; font-size: 25px;">
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-                <div class="sudoku-segment">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                    <input type="text" class="sudoku-cell">
-                </div>
-            </div> -->
-        </div>
-    </div>
-    <script src="script.js"></script>
+	<h1>Sudoku</h1>
+	<div class="wrapper">
+		<div class="entrance_and_choice-lvl form-wrapper">
+			<div class="form__inputs">
+				<input type="text" id="name" placeholder="Enter Name">
+				<input type="password" id="login" placeholder="Enter Password">
+				<button class="enter">Enter</button>
+			</div>
+			<div class="form__btns">
+				<button class="level_1">Easy</button>
+				<button class="level_2">Medium</button>
+				<button class="level_3">Hard</button>
+				<!-- <button>Start</button> -->
+			</div>
+			<div class="finish_and_restart">
+				<button class="solve btn">Show solution</button>
+				<button class="restart btn">Restart</button>
+			</div>
+		</div>
+		<div id="app"></div>
+		<div id="app_2"></div>
+	</div>
+	<script src="script.js"></script>
 </body>
 
 </html>
