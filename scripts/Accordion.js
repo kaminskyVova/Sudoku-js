@@ -30,7 +30,7 @@ accordions.forEach((itemAcc) => {
     accordionContents.forEach((itemCon) => {
       // console.log('item: ', item);
       if (itemCon != context) {
-        console.log("itemCon: ", itemCon);
+        // console.log("itemCon: ", itemCon);
         itemCon.style.maxHeight = null;
       }
     });

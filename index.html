@@ -25,10 +25,8 @@
 			<!-- Accordion #1  -->
 			<button class="accordion__btn first-btn">First Step(registration)</button>
 			<div class="form__inputs accordion__content first">
-				<!-- <div class="title"> -->
 				<p class="title start-title">**To start the game you need to be registered<span class="smile">&#128521;</span>
 				</p>
-				<!-- </div> -->
 				<input type="text" id="name" placeholder="Enter Name">
 				<input type="password" id="password" placeholder="Enter Password">
 				<p class="out_user-name"></p>
@@ -51,8 +49,10 @@
 				<button class="solve btn">Show solution</button>
 				<button class="restart btn">Restart</button>
 			</div>
-
 		</div>
+
+		<!-- progresbar after game field loading  -->
+		<progress class="load-game-progress" value="0" max="100"></progress>
 
 		<!-- enter sudoku field  -->
 		<div id="app"></div>
@@ -63,9 +63,9 @@
 
 
 	<script src="main.js"></script>
-	<script src="Sudoku.js"></script>
-	<script src="Timer.js"></script>
-	<script src="Accordion.js"></script>
+	<script src="./scripts/Sudoku.js"></script>
+	<script src="./scripts/Timer.js"></script>
+	<script src="./scripts/Accordion.js"></script>
 
 </body>
 

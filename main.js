@@ -3,6 +3,7 @@
 //выводим поле на страницу в зависимости от выбрвнного уровня
 // и дополнительные действия с формой
 
+// callback function
 (function StartAndGenerate(
   easyLevel,
   mediumLevel,
@@ -73,26 +74,72 @@
         // если верный логин и пароль то запускаем кнопки
         // выводим поле в зависимости от выбранного поля
         //  легкий уровень
-        const easyLevel = document.querySelector(".level_1");
-        easyLevel.addEventListener("click", () => {
-          levelEasy();
-          startTimer();
-          activeTimer();
-        });
+        const easyLevel = document
+          .querySelector(".level_1")
+          .addEventListener("click", function progresbar() {
+            let start = 0;
+            const loadGameProgress = document.querySelector(
+              ".load-game-progress"
+            );
+            loadGameProgress.style.display = "block";
+            let interval = setInterval(() => {
+              if (start > 100) {
+                clearInterval(interval);
+                levelEasy();
+                startTimer();
+                activeTimer();
+                loadGameProgress.style.display = "none";
+              } else {
+                loadGameProgress.value = start;
+              }
+              start++;
+            }, 15);
+          });
+
         // средний уровень
-        const mediumLevel = document.querySelector(".level_2");
-        mediumLevel.addEventListener("click", () => {
-          levelMedium();
-          startTimer();
-          activeTimer();
-        });
+        const mediumLevel = document
+          .querySelector(".level_2")
+          .addEventListener("click", function progresbar() {
+            let start = 0;
+            const loadGameProgress = document.querySelector(
+              ".load-game-progress"
+            );
+            loadGameProgress.style.display = "block";
+            let interval = setInterval(() => {
+              if (start > 100) {
+                clearInterval(interval);
+                levelMedium();
+                startTimer();
+                activeTimer();
+                loadGameProgress.style.display = "none";
+              } else {
+                loadGameProgress.value = start;
+              }
+              start++;
+            }, 15);
+          });
         // сложный уровень
-        const hardLevel = document.querySelector(".level_3");
-        hardLevel.addEventListener("click", () => {
-          levelHard();
-          startTimer();
-          activeTimer();
-        });
+        const hardLevel = document
+          .querySelector(".level_3")
+          .addEventListener("click", function progresbar() {
+            let start = 0;
+            const loadGameProgress = document.querySelector(
+              ".load-game-progress"
+            );
+            loadGameProgress.style.display = "block";
+            let interval = setInterval(() => {
+              if (start > 100) {
+                clearInterval(interval);
+                levelHard();
+                startTimer();
+                activeTimer();
+                loadGameProgress.style.display = "none";
+              } else {
+                loadGameProgress.value = start;
+              }
+              start++;
+            }, 15);
+          });
         // выводим решение
         solveGame = document
           .querySelector(".solve")
@@ -119,5 +166,3 @@
   }
   login();
 })();
-
-

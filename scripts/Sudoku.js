@@ -1,5 +1,3 @@
-
-
 class Sudoku {
   constructor(
     // начальные цифры

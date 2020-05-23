@@ -304,6 +304,19 @@ button {
   margin-bottom: -6px;
 }
 
+.easy,
+.medium,
+.hard {
+  font-size: 14px;
+  opacity: 0.5;
+  margin: 0;
+  margin-bottom: 7px;
+}
+
+.hard {
+  margin-bottom: 15px;
+}
+
 .first-btn {
   margin-bottom: -25px;
 }
@@ -359,4 +372,11 @@ button {
 .accordion__content {
   width: 400px;
   display: block;
+}
+
+/* ProgressBar  */
+.load-game-progress {
+  width: 250px;
+  margin-top: 100px;
+  display: none;
 }
