@@ -10,29 +10,63 @@
 </head>
 
 <body>
+
 	<h1>Sudoku</h1>
+
+	<!--  -->
+	<div class="timer">
+		<span class="minutes">00</span> <span class="dots">:</span> <span class="seconds">00</span>
+	</div>
+	<!--  -->
+
 	<div class="wrapper">
-		<div class="entrance_and_choice-lvl form-wrapper">
-			<div class="form__inputs">
+
+		<div class="entrance_and_choice-lvl form-wrapper accordion">
+			<!-- Accordion #1  -->
+			<button class="accordion__btn first-btn">First Step(registration)</button>
+			<div class="form__inputs accordion__content first">
+				<!-- <div class="title"> -->
+				<p class="title start-title">**To start the game you need to be registered<span class="smile">&#128521;</span>
+				</p>
+				<!-- </div> -->
 				<input type="text" id="name" placeholder="Enter Name">
-				<input type="password" id="login" placeholder="Enter Password">
+				<input type="password" id="password" placeholder="Enter Password">
+				<p class="out_user-name"></p>
 				<button class="enter">Enter</button>
 			</div>
-			<div class="form__btns">
+			<!-- Accordion #2  -->
+			<button class="accordion__btn second-btn">Second Step(difficulty level selection)</button>
+			<div class="form__btns accordion__content second">
+				<p class="easy">Easy - 75% of the field is open</p>
+				<p class="medium">Medium - 60% of the field is open</p>
+				<p class="hard">Hard - 25% of the field is open</p>
 				<button class="level_1">Easy</button>
 				<button class="level_2">Medium</button>
 				<button class="level_3">Hard</button>
 				<!-- <button>Start</button> -->
 			</div>
-			<div class="finish_and_restart">
+			<!-- Accordion #3  -->
+			<button class="accordion__btn last-btn">Last Step(show solution or reload)</button>
+			<div class="finish_and_restart accordion__content third">
 				<button class="solve btn">Show solution</button>
 				<button class="restart btn">Restart</button>
 			</div>
+
 		</div>
+
+		<!-- enter sudoku field  -->
 		<div id="app"></div>
+		<!-- enter solution field  -->
 		<div id="app_2"></div>
+
 	</div>
-	<script src="script.js"></script>
+
+
+	<script src="main.js"></script>
+	<script src="Sudoku.js"></script>
+	<script src="Timer.js"></script>
+	<script src="Accordion.js"></script>
+
 </body>
 
 </html>

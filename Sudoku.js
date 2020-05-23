@@ -1,4 +1,4 @@
-"use strict";
+
 
 class Sudoku {
   constructor(
@@ -62,6 +62,7 @@ class Sudoku {
   }
 
   static generate(n) {
+    // закладываем n между 0 и 81
     n = Math.min(81, Math.max(n, 0));
     const generateSudoku = new Sudoku();
 
@@ -98,7 +99,7 @@ class Sudoku {
       const column = this.getColumn(i).map((x) => x.number);
 
       for (let n = 1; n <= 9; n++) {
-        if (!row.includes(n)) {
+        if (!column.includes(n)) {
           return false;
         }
       }
@@ -106,7 +107,7 @@ class Sudoku {
       const segment = this.getSegment(i).map((x) => x.number);
 
       for (let n = 1; n <= 9; n++) {
-        if (!row.includes(n)) {
+        if (!segment.includes(n)) {
           return false;
         }
       }
@@ -436,86 +437,3 @@ class Sudoku {
     return copy;
   }
 }
-
-//выводим поле на страницу в зависимости от выбрвнного уровня
-// и дополнительные действия с формой
-
-(function (easyLevel, mediumLevel, hardLevel, solveGame, restart) {
-  //выбор уровня и вывод поля
-  function levelEasy() {
-    const generateLv_1 = Sudoku.generate(61);
-    const virtualDom = document
-      .getElementById("app")
-      .append(generateLv_1.getGameField(300));
-  }
-
-  function levelMedium() {
-    const generateLv_2 = Sudoku.generate(41);
-    const virtualDom = document
-      .getElementById("app")
-      .append(generateLv_2.getGameField(300));
-  }
-
-  function levelHard() {
-    const generateLv_3 = Sudoku.generate(25);
-    const virtualDom = document
-      .getElementById("app")
-      .append(generateLv_3.getGameField(300));
-  }
-
-  // показать решение
-  function finishGame() {
-    let solveGame = new Sudoku();
-    solveGame = solveGame.solveGame();
-    const virtualDom = document
-      .getElementById("app_2")
-      .append(solveGame.getGameField(300));
-  }
-
-  function restartGame() {
-    location.reload();
-  }
-
-  function login(name, password) {
-    name = document.getElementById("name");
-    password = document.getElementById("login");
-    const enter = document.querySelector(".enter");
-    name.value === "abcd";
-    password.value === "1234";
-    enter.addEventListener("click", () => {
-      if (name.value && password.value) {
-        enter.style.backgroundColor = "green";
-        // если верный логин и пароль то запускаем кнопки
-        // выводим поле
-        easyLevel = document
-          .querySelector(".level_1")
-          .addEventListener("click", levelEasy);
-        mediumLevel = document
-          .querySelector(".level_2")
-          .addEventListener("click", levelMedium);
-        hardLevel = document
-          .querySelector(".level_3")
-          .addEventListener("click", levelHard);
-        // выводим решение
-        solveGame = document
-          .querySelector(".solve")
-          .addEventListener("click", finishGame);
-        // перезагрузить
-        restart = document
-          .querySelector(".restart")
-          .addEventListener("click", restartGame);
-      } else {
-        alert(`Enter : 
-    
-          Name: abcd 
-          Password: 1234
-          
-          
-                                          Good Luck!!!!!`);
-      }
-      name.value = "";
-      password.value = "";
-    });
-  }
-  login();
-})();

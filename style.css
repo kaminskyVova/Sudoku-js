@@ -1,26 +1,21 @@
-
 body {
   font-family: 'Rubik One', sans-serif;
   height: 430px;
-  overflow: hidden;
 }
-
 
 h1 {
   width: 250px;
   margin: auto;
   margin-bottom: 30px;
   font-size: 64px;
-  /*color: coral;
-  */text-align: center;
+  text-align: center;
   padding: 10px;
-  /*font-size: 2em;
-  */background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
+  background: -o-linear-gradient(315deg, #12BCB0 20%, #FABE0E 70%);
+  background: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  /*display: inline-block;
-  *//*padding: 0.3em 0.6em ;
-  */border: 3px solid transparent;
+  border: 3px solid transparent;
+  -o-border-image: -o-linear-gradient(315deg, #12BCB0 20%, #FABE0E 70%);
   border-image: linear-gradient(135deg, #12BCB0 20%, #FABE0E 70%);
   border-image-slice: 1;
   -webkit-border-radius: 30px;
@@ -28,15 +23,95 @@ h1 {
   -ms-border-radius: 30px;
   -o-border-radius: 30px;
 }
-.wrapper {
-  width:600px;
-  /* margin: auto;  */
-display: flex;
+
+
+/* All buttons */
+button {
+  display: inline-block;
+  cursor: pointer;
+  width: 90px;
+  height: 40px;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  outline: none;
+  margin-bottom: 10px;
 }
 
+
+
+/* Timer */
+.timer {
+  display: none;
+  margin: auto;
+  width: 65px;
+  font-size: 24px;
+  text-align: center;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.minutes,
+.seconds {
+  display: block;
+  color: blue;
+  padding-top: 2px;
+}
+
+.dots {
+  display: block;
+  color: red;
+}
+
+.active {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.hide {
+  display: none;
+}
+
+/* content wrapper  */
+.wrapper {
+  /* width: 600px; */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+
+/* enter form  */
 .form-wrapper {
-  /* width: 550px; */
-  margin-right: 128px;
+  margin-right: 80px;
+  /* margin-top: -px; */
+}
+
+
+.title {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.start-title {
+  font-size: 12px;
+  color: silver;
+  margin-bottom: 3px;
+  margin-right: 5px;
+}
+
+.smile {
+  display: block;
+  opacity: 1;
 }
 
 .form__inputs {
@@ -44,24 +119,28 @@ display: flex;
 }
 
 
-
 .enter {
   display: block;
   background-color: rgb(255, 0, 34);
   color: #fff;
   font-size: 18px;
-  border:1px solid blue;
 }
 
 .enter:hover,
 .enter:hover {
-  border:1px solid red;
+  border: 1px solid red;
   color: yellow;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
 }
 
 
 #name,
-#login {
+#password {
+  cursor: pointer;
   width: 300px;
   height: 30px;
   border: 1px solid blue;
@@ -72,63 +151,84 @@ display: flex;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   -o-border-radius: 10px;
-  margin-bottom: 10px;
-
+  margin-bottom: 5px;
 }
 
-button {
-  cursor: pointer;
-  width: 90px;
-  height: 40px;
-  color: #fff;
-  border-radius: 10px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  -ms-border-radius: 10px;
-  -o-border-radius: 10px;
-  outline: none;
-  margin-bottom: 10px;
+.out_user-name {
+  font-size: 24px;
+  color: #FABE0E;
+  margin-bottom: 5px;
+  margin-top: 10px;
 }
 
+
+/* choice level  */
 .level_1 {
   background-color: rgb(9, 212, 9);
   border-color: cornflowerblue;
 }
+
 .level_1:hover,
 .level_1:active {
   background-color: chartreuse;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
 }
 
 .level_2 {
   background-color: rgb(224, 224, 5);
   border-color: cornflowerblue;
 }
+
 .level_2:hover,
 .level_2:active {
   background-color: yellow;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
 }
 
 .level_3 {
   background-color: rgb(215, 8, 98);
   border-color: cornflowerblue;
 }
+
 .level_3:hover,
 .level_3:active {
   background-color: rgb(250, 0, 0);
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
 }
 
 .btn {
   background-color: dodgerblue;
   width: 100px;
 }
+
 .btn:hover,
 .btn:active {
   background-color: royalblue;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
 }
 
-
+/* game field  */
 .sudoku-game {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: 10px;
   margin-bottom: 1000px;
@@ -140,7 +240,10 @@ button {
   padding: 1px;
   width: calc(100%/3 - 6px);
   height: calc(100%/3 - 6px);
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
   flex-wrap: wrap;
 }
 
@@ -177,7 +280,83 @@ button {
   color: #ed0a0a;
 }
 
-
 .sudoku-cell.error {
   color: red;
+}
+
+
+/* Accordion  */
+.accordion__content {
+  padding-top: 30px;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-in-out;
+  -webkit-transition: max-height 0.5s ease-in-out;
+  -moz-transition: max-height 0.5s ease-in-out;
+  -ms-transition: max-height 0.5s ease-in-out;
+  -o-transition: max-height 0.5s ease-in-out;
+  padding-left: 10px;
+  margin: 0;
+}
+
+.accordion__content.second {
+  padding-top: 20px;
+  margin-bottom: -6px;
+}
+
+.first-btn {
+  margin-bottom: -25px;
+}
+
+.second-btn,
+.last-btn {
+  display: block;
+  margin-bottom: -7px;
+}
+
+.accordion__btn {
+  padding-top: 10px;
+  text-align: center;
+  font-size: 16px;
+  width: 400px;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: rgb(8, 216, 243);
+  outline: none;
+  border: none;
+  cursor: pointer;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+
+.accordion__btn:hover {
+  background-color: royalblue;
+  transition: background-color 0.2s linear;
+  -webkit-transition: background-color 0.2s linear;
+  -moz-transition: background-color 0.2s linear;
+  -ms-transition: background-color 0.2s linear;
+  -o-transition: background-color 0.2s linear;
+}
+
+.accordion__btn::after {
+  content: "+";
+  color: rgb(241, 100, 100);
+  font-size: 20px;
+}
+
+.is-open {
+  background-color: rgb(21, 230, 14);
+}
+
+.accordion__btn.is-open::after {
+  content: "-";
+}
+
+.accordion__content {
+  width: 400px;
+  display: block;
 }
