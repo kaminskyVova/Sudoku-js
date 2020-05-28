@@ -8,13 +8,13 @@ let interval;
 let isRanning = false;
 
 function startTimer() {
-  if (isRanning == false) {
+  if (isRanning === false) {
     interval = setInterval(incrementTimer, 1000);
     isRanning = true;
   }
 }
 function stopTimer() {
-  if (isRanning == true) {
+  if (isRanning === true) {
     clearInterval(interval);
     isRanning = false;
   }

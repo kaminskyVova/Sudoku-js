@@ -19,6 +19,13 @@
   //выбор уровня и вывод поля
   let currentSudoku = null;
 
+  // блок кнопок выбора уровня
+  function disabled() {
+    const levelBtns = document.querySelectorAll(".level").forEach((e) => {
+      e.setAttribute("disabled", "disabled");
+    });
+  }
+
   //легкий уровень
   function levelEasy() {
     const generateLv_1 = Sudoku.generate(61);
@@ -88,6 +95,7 @@
                 levelEasy();
                 startTimer();
                 activeTimer();
+                disabled();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -111,6 +119,7 @@
                 levelMedium();
                 startTimer();
                 activeTimer();
+                disabled();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -133,6 +142,7 @@
                 levelHard();
                 startTimer();
                 activeTimer();
+                disabled();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -162,6 +172,7 @@
 
       name.value = "";
       password.value = "";
+      enter.setAttribute("disabled", "disabled");
     });
   }
   login();

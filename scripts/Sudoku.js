@@ -1,3 +1,5 @@
+"use strict";
+
 class Sudoku {
   constructor(
     // начальные цифры

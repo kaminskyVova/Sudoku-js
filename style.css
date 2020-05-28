@@ -82,7 +82,6 @@ button {
 
 /* content wrapper  */
 .wrapper {
-  /* width: 600px; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -92,7 +91,6 @@ button {
 /* enter form  */
 .form-wrapper {
   margin-right: 80px;
-  /* margin-top: -px; */
 }
 
 
@@ -208,6 +206,13 @@ button {
   -o-transition: background-color 0.2s linear;
 }
 
+/* when level btns disabled  */
+.level:disabled {
+  background-color: silver;
+  border: 2px solid red;
+  /* border-color: red; */
+}
+
 .btn {
   background-color: dodgerblue;
   width: 100px;
@@ -231,7 +236,6 @@ button {
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-right: 10px;
-  margin-bottom: 1000px;
 }
 
 .sudoku-segment {
