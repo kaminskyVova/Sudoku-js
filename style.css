@@ -210,7 +210,6 @@ button {
 .level:disabled {
   background-color: silver;
   border: 2px solid red;
-  /* border-color: red; */
 }
 
 .btn {

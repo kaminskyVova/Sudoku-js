@@ -7,6 +7,7 @@ let timerTime = 0;
 let interval;
 let isRanning = false;
 
+
 function startTimer() {
   if (isRanning === false) {
     interval = setInterval(incrementTimer, 1000);
@@ -20,6 +21,7 @@ function stopTimer() {
   }
 }
 
+//change timer and inner on the page
 function incrementTimer() {
   timerTime++;
   const numberOfMinutes = Math.floor(timerTime / 60);
@@ -28,6 +30,7 @@ function incrementTimer() {
   seconds.innerText = zeroNumber(numberOfSeconds);
 }
 
+//add 0 before number if num < 10
 function zeroNumber(number) {
   return number < 10 ? "0" + number : number;
 }

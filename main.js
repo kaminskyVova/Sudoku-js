@@ -1,7 +1,9 @@
 "use strict";
 
-//выводим поле на страницу в зависимости от выбрвнного уровня
-// и дополнительные действия с формой
+//display the field on the page depending on the selected level
+// להציג את השדה  בהתאם לרמה שנבחרה
+// and additional actions with the form
+// ופעולות נוספות
 
 // callback function
 (function StartAndGenerate(
@@ -16,17 +18,18 @@
 
     timer.classList.add("active");
   }
-  //выбор уровня и вывод поля
+  //level selection and field output
+  // בחירת רמה
   let currentSudoku = null;
 
-  // блок кнопок выбора уровня
-  function disabled() {
+  // lock of buttons for level selection
+  function disabledLevelBtn() {
     const levelBtns = document.querySelectorAll(".level").forEach((e) => {
       e.setAttribute("disabled", "disabled");
     });
   }
 
-  //легкий уровень
+  //easy level
   function levelEasy() {
     const generateLv_1 = Sudoku.generate(61);
     currentSudoku = generateLv_1;
@@ -34,7 +37,7 @@
       .getElementById("app")
       .append(generateLv_1.getGameField(300));
   }
-  // средний уровень
+  // middle level
   function levelMedium() {
     const generateLv_2 = Sudoku.generate(41);
     currentSudoku = generateLv_2;
@@ -42,7 +45,7 @@
       .getElementById("app")
       .append(generateLv_2.getGameField(300));
   }
-  // тяжелый уровень
+  // hard level
   function levelHard() {
     const generateLv_3 = Sudoku.generate(25);
     currentSudoku = generateLv_3;
@@ -51,21 +54,32 @@
       .append(generateLv_3.getGameField(300));
   }
 
-  // показать решение в соседнем блоке
+  // show solution in adjacent block
+  // להראות פתרון בבלוק הסמוך
   function finishGame() {
     let solveGame = currentSudoku;
     solveGame = solveGame.solveGame();
+
     const virtualDom = document
       .getElementById("app_2")
       .append(solveGame.getGameField(300));
   }
-  // обновить страницу тем самым обновить игру
+
+  function disabledSolveBtn() {
+    const solveGame = document.querySelector(".solve");
+    solveGame.setAttribute("disabled", "disabled");
+  }
+
+  // reload the page thereby reload the game
+  // טען מחדש את הדף ובכך טען מחדש את המשחק
   function restartGame() {
     location.reload();
   }
 
-  //если введен верный логин и пароль то можно начинать игру
-  // в другом случае кнопки не выполняют команд
+  //if the correct username and password are entered then you can start the game
+  // אם שם המשתמש והסיסמה הנכונים, תוכלו להתחיל במשחק
+  // otherwise, the buttons do not execute commands
+  // אחרת כפתורים אינם פעילים
   function login(name, password) {
     name = document.getElementById("name");
     password = document.getElementById("password");
@@ -75,12 +89,12 @@
     enter.addEventListener("click", () => {
       if (name.value === "abcd" && password.value === "1234") {
         enter.style.backgroundColor = "green";
-        // name.style.borderColor = "green"
-        // password.style.borderColor = "green"
         outUserName.innerHTML = `Be Strong!!! Player: ${name.value} &#128540;`;
-        // если верный логин и пароль то запускаем кнопки
-        // выводим поле в зависимости от выбранного поля
-        //  легкий уровень
+        // if the username and password are correct, then we launch the buttons
+        // אם שם המשתמש והסיסמה נכונים, אנו מפעילים את הכפתורים
+        // display the field depending on the selected field
+        // הצגת השדה בהתאם לשדה שנבחר
+        //  easy level
         const easyLevel = document
           .querySelector(".level_1")
           .addEventListener("click", function progresbar() {
@@ -95,7 +109,7 @@
                 levelEasy();
                 startTimer();
                 activeTimer();
-                disabled();
+                disabledLevelBtn();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -104,7 +118,7 @@
             }, 15);
           });
 
-        // средний уровень
+        // middle level
         const mediumLevel = document
           .querySelector(".level_2")
           .addEventListener("click", function progresbar() {
@@ -119,7 +133,7 @@
                 levelMedium();
                 startTimer();
                 activeTimer();
-                disabled();
+                disabledLevelBtn();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -127,7 +141,7 @@
               start++;
             }, 15);
           });
-        // сложный уровень
+        // hard level
         const hardLevel = document
           .querySelector(".level_3")
           .addEventListener("click", function progresbar() {
@@ -142,7 +156,7 @@
                 levelHard();
                 startTimer();
                 activeTimer();
-                disabled();
+                disabledLevelBtn();
                 loadGameProgress.style.display = "none";
               } else {
                 loadGameProgress.value = start;
@@ -150,15 +164,18 @@
               start++;
             }, 15);
           });
-        // выводим решение
-        solveGame = document
+
+        // out solution
+        const solveGame = document
           .querySelector(".solve")
-          .addEventListener("click", finishGame);
-        solveGame = document
-          .querySelector(".solve")
-          .addEventListener("click", stopTimer);
-        // перезагрузить
-        restart = document
+          .addEventListener("click", function solveGame() {
+            finishGame();
+            stopTimer();
+            disabledSolveBtn();
+          });
+
+        // reload
+        const restart = document
           .querySelector(".restart")
           .addEventListener("click", restartGame);
       } else {

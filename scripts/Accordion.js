@@ -10,11 +10,12 @@ accordions.forEach((itemAcc) => {
   itemAcc.addEventListener("click", (event) => {
     event.preventDefault();
 
-    // следующий за таргетом по клику блок
+    // block following after the clicked target
     const context = itemAcc.nextElementSibling;
     // console.log('context: ', context);
 
-    // открываем по клику
+    // open by click
+    // לפתוח בלחיצה
     if (context.style.maxHeight) {
       // console.log("yes");
       context.style.maxHeight = null;
@@ -26,7 +27,8 @@ accordions.forEach((itemAcc) => {
       itemAcc.classList.add("is-open");
     }
 
-    // закрываем открытый если другой открываем
+    // close opened if another opening
+    // אחר div סוגרים אחרים אם רוצים לפתוח
     accordionContents.forEach((itemCon) => {
       // console.log('item: ', item);
       if (itemCon != context) {
@@ -35,7 +37,8 @@ accordions.forEach((itemAcc) => {
       }
     });
 
-    // (лечим баг)возвращаем плюс вместо минуса при закрытии forEach
+    // (treat a bug) return a plus instead of a minus at closing forEach
+    // מחזרים מינוס
     accordions.forEach((item) => {
       if (item != itemAcc) {
         item.classList.remove("is-open");

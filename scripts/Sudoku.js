@@ -2,28 +2,26 @@
 
 class Sudoku {
   constructor(
-    // начальные цифры
+    // start line 81 element
     initString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000"
   ) {
+    // start line is added to the variable
     const startValues = initString
-      //создаем массив из строки
+      //create array from a string
       .split("")
-      // задаем фильтр на допустимые значения
+      // set the filter to valid values
       .filter((x) => "0123456789".includes(x))
-      // переводим обратно в число
+      // set back to number
       .map((x) => Number(x));
-    // console.log("startValues: ", startValues);
     /////////////////////////////////////////////////////////
-
-    // создаем массив с 81 ячейкой
+    //create an array and an object and add data using two cycles along the X axis and along the Y axis from
+    // create array with 81 cells
     this.gameBody = [];
-    // for (let i = 0; i < 81; i++) {
-    // console.log(' this.gameBody.push(i): ',  this.gameBody.push(i));
-    // }
 
-    //создадим объект и добавим данные при помощи двух циклов по оси X и по оси Y
-    let idNumber = 1; // добавим id для каждой клетки
+    let idNumber = 1; // add id for each cell
 
+    // go through each row and each column
+    // עברים על כל שורה ועל כל טור
     for (let y = 0; y < 9; y++) {
       for (let x = 0; x < 9; x++) {
         this.gameBody.push({
@@ -31,22 +29,23 @@ class Sudoku {
           x: x,
           y: y,
           segment: parseInt(y / 3) * 3 + parseInt(x / 3),
-          // number: 0,
-          // поместим строку начальную
+          //number: 0,
+          // put the initial line
+          // הראשוני string
           number: startValues[idNumber - 1],
           selected: false,
           supported: false,
           important: false,
           error: false,
-          started: startValues[idNumber - 1] === 0 ? false : true, // проверка стартовая или нет ячейка
+          started: startValues[idNumber - 1] === 0 ? false : true, // check start or not cell
         });
 
         idNumber++;
       }
     }
-    //  console.log( this.gameBody);
   }
 
+  // we get an random empty cell
   static getFreeCell(sudoku) {
     const cells = sudoku.gameBody.filter((x) => !x.number);
     const index = Math.floor(Math.random() * cells.length);
@@ -54,6 +53,7 @@ class Sudoku {
     return cells[index];
   }
 
+  // we get a busy cell
   static getBusyCell(sudoku) {
     const cells = sudoku.gameBody.filter((x) => x.number);
     const index = Math.floor(Math.random() * cells.length);
@@ -62,25 +62,33 @@ class Sudoku {
   }
 
   static generate(n) {
-    // закладываем n между 0 и 81
+    // generate n between 0 and 81
     n = Math.min(81, Math.max(n, 0));
     const generateSudoku = new Sudoku();
 
+    // get free cell and put number 1 --- 9
     for (let i = 0; i <= 9; i++) {
       const freeCell = Sudoku.getFreeCell(generateSudoku);
       freeCell.number = i;
     }
 
+    // we have solved game
     const completelySolve = generateSudoku.solveGame();
 
+    // get empty cells from filled options and delete the values
     for (let i = 0; i < 81 - n; i++) {
       const busyCell = Sudoku.getBusyCell(completelySolve);
       busyCell.number = 0;
     }
+    // return solved sudoku with empty-cells 
     return new Sudoku(completelySolve.gameBody.map((x) => x.number).join(""));
   }
 
+  // solve empty sudoku
+  // check solved game or not
+  // in row,column,segment only one number === 1 -- 9
   get isSolved() {
+    // no empty cell
     for (const cell of this.gameBody) {
       if (cell.number === 0) {
         return false;
@@ -88,8 +96,9 @@ class Sudoku {
     }
 
     for (let i = 0; i < 9; i++) {
+      // check for duplicate numbers and have 1=== 9
+      // if not all numbers includes from 1 to 9 the game is not solved === false
       const row = this.getRow(i).map((x) => x.number);
-
       for (let n = 1; n <= 9; n++) {
         if (!row.includes(n)) {
           return false;
@@ -97,7 +106,7 @@ class Sudoku {
       }
 
       const column = this.getColumn(i).map((x) => x.number);
-
+      // check for duplicate numbers and have 1=== 9
       for (let n = 1; n <= 9; n++) {
         if (!column.includes(n)) {
           return false;
@@ -105,7 +114,7 @@ class Sudoku {
       }
 
       const segment = this.getSegment(i).map((x) => x.number);
-
+      // check for duplicate numbers and have 1=== 9
       for (let n = 1; n <= 9; n++) {
         if (!segment.includes(n)) {
           return false;
@@ -115,43 +124,44 @@ class Sudoku {
     return true;
   }
 
+  //create a copy of the current sudoku
+  //for not to change the current body for use when solving
   getCopy() {
+    // because that the initial values ​​as a string then return the string
     return new Sudoku(this.gameBody.map((x) => x.number).join(""));
   }
 
-  // получим ряд
+  // get a row
   getRow(numOfRow) {
     const row = [];
 
     for (let y = 0; y < 9; y++) {
       row.push(this.gameBody[9 * numOfRow + y]);
     }
-    // console.log(row);
 
     return row;
   }
 
-  // получим колонку
+  // get a column
   getColumn(numOfColumn) {
     const column = [];
 
     for (let x = 0; x < 9; x++) {
       column.push(this.gameBody[x * 9 + numOfColumn]);
     }
-    // console.log(column);
 
     return column;
   }
 
-  // получим квадрат
+  // get a square(segment)
   getSegment(numOfSegment) {
     const segment = [];
 
-    // верхняя левая ячейка
+    // upper left cel
     const x = numOfSegment % 3,
       y = parseInt(numOfSegment / 3);
 
-    // проходим по три раза по x/y в сегменте
+    //go three times x / y in the segment relative to the leftmost cell
     for (let dy = 0; dy < 3; dy++) {
       for (let dx = 0; dx < 3; dx++) {
         segment.push(this.gameBody[y * 27 + dy * 9 + x * 3 + dx]);
@@ -161,24 +171,25 @@ class Sudoku {
     return segment;
   }
 
-  //функции обработчики ввода
-
-  // нажатие клавиши
+  //functions input handlers
+  // keydown
   keydownHandler(event, cell) {
+    //if the cell is not a start then change the styles
+    // and if the start then can’t change
     if (!cell.started) {
       if ("123456789".includes(event.key)) {
-        // если event.key одно из "123456789"
+        // if event.key one of "123456789"
         cell.number = parseInt(event.key);
 
-        //убираем подсветку прошлой ошибки если моменяли на правильное значение
+        //remove the highlight of the last error if we changed to the correct value
         if (cell.error) {
           for (const item of this.gameBody) {
             item.error = false;
           }
         }
 
-        // отметим если есть не соответствие правилам (не правельный ход)
-        // проверим ряд
+        // note if there is no compliance with the rules (not the right move)
+        // check the row
         for (const item of this.getRow(cell.y)) {
           if (item === cell) {
             continue;
@@ -189,7 +200,7 @@ class Sudoku {
           }
         }
 
-        // проверим колонку
+        // check the column
         for (const item of this.getColumn(cell.x)) {
           if (item === cell) {
             continue;
@@ -200,7 +211,7 @@ class Sudoku {
           }
         }
 
-        // проверим сегмент
+        // check the segment
         for (const item of this.getSegment(cell.segment)) {
           if (item === cell) {
             continue;
@@ -211,16 +222,17 @@ class Sudoku {
           }
         }
       }
-      // добавим возможность удалять
+      // add the ability to delete
+      // הוסף את היכולת למחוק
       else if (["Backspace", "Delete"].includes(event.key)) {
         cell.number = "";
       }
 
-      //отключаем у всех ячеек стили
+      //disable styles for all cells
       for (const cell of this.gameBody) {
         cell.important = false;
       }
-      // добавляем выбранным ячейкам с одинаковыми элементами стили
+      // add styles to the selected cells with the same elements
       if (cell.number) {
         for (const item of this.gameBody) {
           if (item.number === cell.number) {
@@ -230,75 +242,76 @@ class Sudoku {
       }
     }
 
-    //отменяем действие кнопок кроме тех которые соответствуют условию
+    //cancel the action of the buttons except those that match the condition
+    // בטל את פעולת הכפתורים למעט אלה התואמים את התנאי(אם זה לא מספר
     event.preventDefault();
-    this.gameUpdate();
+    this.viewUpdate();
   }
 
-  // фокус на клавище
+  // focus on the keyboard
   focusHandler(event, cell) {
-    // добавим цвет на клетку по нажатию
+    // add color to the cell by clicking
     cell.selected = true;
 
-    // выделим весь ряд
+    // select the whole row
     for (const item of this.getRow(cell.y)) {
       item.supported = true;
     }
 
-    // выделим весь столбик
+    // select the entire column
     for (const item of this.getColumn(cell.x)) {
       item.supported = true;
     }
 
-    // выделим выбранный элемент ячейки
+    // select the selected cell element
     for (const item of this.gameBody) {
       if (cell.number === item.number) {
         item.important = true;
       }
     }
 
-    this.gameUpdate();
+    this.viewUpdate();
   }
 
-  // потеря фокуса с клавиши
+  // key focus loss
   blurHandler(event, cell) {
-    // убираем с ошибки
+    // remove error
     if (cell.error) {
       cell.number = 0;
     }
 
-    // проходим по всем ячейкам
+    // go through all the cells
     for (const cell of this.gameBody) {
-      //убираем выделение ряда
+      //remove row selection
       cell.supported = false;
-      // убираем стиль выделенной клетки
+      // remove the selected cell style
       cell.selected = false;
-      // убираем стиль для одинаковых
+      // remove the style for the same
       cell.important = false;
-      // убираем с ошибки
+      // remove error
       cell.error = false;
     }
 
-    this.gameUpdate();
+    this.viewUpdate();
   }
 
-  // создадим игровое поле
+  // create a playing field (virtual DOM)
   getGameField(size) {
-    // игровое поле
+    // playing field
     const sudokuGame = document.createElement("div");
     sudokuGame.classList.add("sudoku-game");
     sudokuGame.style.width = `${size}px`;
     sudokuGame.style.height = `${size}px`;
     sudokuGame.style["font-size"] = `${size / 20}px`;
 
-    // создадим 9 ячеек (3)
-    // проходим по gameBody и создаем для каждого item 9 ячеек input
+    // create 9 cells
+    //go through gameBody and create for each item 9 input cells
     for (const cell of this.gameBody) {
       const inputItem = document.createElement("input");
       inputItem.setAttribute("type", "text");
       inputItem.classList.add("sudoku-cell");
 
-      //обработчики для ввода только цифр и только одной
+      //handlers for entering only numbers and only one
       inputItem.addEventListener("keydown", (event) =>
         this.keydownHandler(event, cell)
       );
@@ -309,7 +322,7 @@ class Sudoku {
         this.blurHandler(event, cell)
       );
 
-      // проверяем если стартовая ячейка то добавляем стиль
+      // check if the starting cell then add the style
       if (cell.started) {
         inputItem.classList.add("start-cell");
       }
@@ -317,30 +330,31 @@ class Sudoku {
       cell.element = inputItem;
     }
 
-    // создаем 9 полей (1,2)
+    // create 9 blocks \ segments
     for (let i = 0; i < 9; i++) {
-      // создаем
+      // create
       const segmentsBlock = document.createElement("div");
       segmentsBlock.classList.add("sudoku-segment");
 
-      // добавляем ячейки
+      // add cells
       for (const cell of this.getSegment(i)) {
         segmentsBlock.append(cell.element);
       }
 
-      // добавляем блоки
+      // add blocks
       sudokuGame.append(segmentsBlock);
     }
 
-    //для добавления начальной строки
-    this.gameUpdate();
+    //call the method to add the start line
+    this.viewUpdate();
 
     return sudokuGame;
   }
 
-  gameUpdate() {
+  // update \ add visual effects
+  viewUpdate() {
     for (const cell of this.gameBody) {
-      //сначала удалим все дополнительные классы у всех ячеек
+      //first we will remove all additional classes in all cells
       cell.element.classList.remove(
         "error",
         "important-cell",
@@ -348,43 +362,48 @@ class Sudoku {
         "selected-cell"
       );
       cell.element.value = cell.number ? cell.number : "";
-      // повесим только на выделенные вряду
+      //hang only on supported cells
       if (cell.supported) {
         cell.element.classList.add("supported-cell");
       }
-      // повесим только на выделеную ячейку
+      // hang only on selected cells
       if (cell.selected) {
         cell.element.classList.add("selected-cell");
       }
-      // повесим только на ячейки с одинаковыми элементами
+      // hang only on cells with identical elements
       if (cell.important) {
         cell.element.classList.add("important-cell");
       }
-      // повесим на ошибки (совпадение елементов в столбе, в ряду, в сегменте)
+      // hang on errors (coincidence of elements in the table, in a row, in a segment)
+      // css class אם לא המהלך הנכון הוסף
       if (cell.error) {
         cell.element.classList.add("error");
       }
     }
   }
 
+  // possible values
+  // ערכים אפשריים
   getPotentials() {
     const potentials = [];
 
+    // if
     for (const cell of this.gameBody) {
+      // if cell already have a number => push
       if (cell.number) {
         potentials.push(cell.number);
       } else {
-        //получили все числа строки
+        //got all row numbers
         const rowNumbers = this.getRow(cell.y).map((x) => x.number);
-        //получили все числа колонки
+        //got all column numbers
         const columnNumbers = this.getColumn(cell.x).map((x) => x.number);
-        //получили все числа сегмента
+        //got all segment numbers
         const segmentNumbers = this.getSegment(cell.segment).map(
           (x) => x.number
         );
-        // допустимые числа
+        // filter only valid numbers
         const possibleValues = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-        // фильтруем и добавляем только те значения котрые отсутствуют
+        // filter leave only those numbers that are not present
         potentials.push(
           possibleValues
             .filter((x) => !rowNumbers.includes(x))
@@ -396,7 +415,9 @@ class Sudoku {
     return potentials;
   }
 
+  // game solution
   solveGame() {
+    // change only a copy
     const copy = this.getCopy();
 
     let haveSolution = true;
@@ -407,8 +428,9 @@ class Sudoku {
 
       for (let i = 0; i < 81; i++) {
         const potential = potentials[i];
-
+        //check potential membership of arr and him length > 0
         if (potential instanceof Array && potential.length === 1) {
+          // add a single value to the copy
           copy.gameBody[i].number = potential[0];
           haveSolution = true;
         }
@@ -417,9 +439,11 @@ class Sudoku {
 
     const potentials = copy.getPotentials();
 
-    mainLoop: for (let option = 2; option <= 9; option++) {
+    //must to find the smallest option of cell
+    for (let option = 2; option <= 9; option++) {
       for (let i = 0; i < 81; i++) {
         if (potentials[i].length === option) {
+          // check already received options
           for (const value of potentials[i]) {
             const nextCopy = copy.getCopy();
             nextCopy.gameBody[i].number = value;
@@ -429,7 +453,7 @@ class Sudoku {
               return resultCopy;
             }
           }
-          break mainLoop;
+          break;
         }
       }
     }
